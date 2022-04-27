@@ -1,1 +1,1 @@
-# ReactPOC
+# redux
