@@ -61,9 +61,9 @@ function Form(props) {
           </Grid>
           <Grid item xs={12}>
             <MuiButton 
-              buttonText="Submit" 
+              buttontext="Submit" 
               fontWeight="900" 
-              bgColor="#fff" 
+              bgcolor="#fff" 
               border="solid 1px var(--dark-grey)"
               padding= "5px 10px 5px 10px"
               margin = "1px 2px 1px 2px"
@@ -72,9 +72,9 @@ function Form(props) {
           </Grid>
           <Grid item xs={12}>
           <MuiButton 
-              buttonText="Reset" 
+              buttontext="Reset" 
               fontWeight="900" 
-              bgColor="#fff"
+              bgcolor="#fff"
               border="solid 1px var(--dark-grey)"
               padding= "5px 10px 5px 10px"
               margin = "1px 2px 1px 2px"

@@ -8,7 +8,7 @@ const origin = window.location.href;
 
 if(origin.indexOf('localhost') !== -1 || origin.indexOf('development') !== -1){
        env = 'dev';
-       ISSUER = 'https://dev-47410790.okta.com/oauth2/0oa4hnv8en0u1iIBy5d7';
+       ISSUER = 'https://dev-47410790.okta.com/oauth2/default';
 //     ISSUER = 'https://cnapreview.okta.com/outh2/0oa4hnv8en0u1iIBy5d7'
        CLIENT_ID = '0oa4hnv8en0u1iIBy5d7';
 }
@@ -27,6 +27,7 @@ export default {
         issuer: ISSUER,
         redirectUri: `${window.location.origin}/home`,
         scope: ['openid','profile','email'],
+        pkce:false,
         disableHttpsCheck: OKTA_TESTING_DISABLEHTTPSCHECK,
     }
 };

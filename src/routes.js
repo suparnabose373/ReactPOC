@@ -3,10 +3,10 @@ import { Route, useHistory } from 'react-router-dom';
 import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import config from './config';
-import main from './components/main';
-import authentication from './authentication';
+import Main from './components/main';
+import Authentication from './authentication';
 import custCallback from './custCallback';
-import errorScreen from './errorScreen';
+import ErrorScreen from './errorScreen';
 import Loader from './common/loader';
 
 const dashboard = lazy(() => import('./components/Dashboard/index'));
@@ -30,14 +30,16 @@ const Routes = () => {
 
     return (
         <div>
-            <Main />
+            
             <div className='grid-container'>
                 <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
                     <Route path='/' exact component={Authentication} />
                     <Route path='/home' component={custCallback} />
-                    <Route path='/login/callback' component={NoAccess} />
-                    <Route path='/dashboard' component={WaitingComponent(dashboard)}/>
-                    <Route path='/errorScreen' component={ErrorScreen} />  
+                    <Route path='/login/callback' component={LoginCallback} />
+                    
+                    
+                    
+
                     <SecureRoute path='/dashboard' component={WaitingComponent(dashboard)}/>
                     <SecureRoute path='/errorScreen' component={ErrorScreen} />                  
                 </Security>
