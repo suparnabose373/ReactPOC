@@ -11,7 +11,7 @@ import Loader from './common/loader';
 
 const dashboard = lazy(() => import('./components/Dashboard/index'));
 const oktaAuth = new OktaAuth(config.oidc);
-const NoAccess = () => {<div>NO ACCESS</div>}
+// const NoAccess = () => {<div>NO ACCESS</div>}
 
 const Routes = () => {
     const history = useHistory();

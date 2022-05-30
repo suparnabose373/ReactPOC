@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import '../fonts/AvenirLTStd-Black.ttf';
 
 const useStyles = makeStyles({
-        customizedButton: {
+        customizedBtn: {
             backgroundColor: backgroundColor => (backgroundColor.disabled === true) ? '#9fa1a4' : backgroundColor.bgcolor,
             color: color => color.color,
             fontWeight: fontWeight => fontWeight.fontWeight,
@@ -35,7 +35,7 @@ function CustomizedButton(props) {
     
     return(
         <Button
-            className={classes.customizedButton}
+            className={classes.customizedBtn}
             id={id}
             onClick={clicked}
             type={type}
