@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Grid, TextField } from '@material-ui/core';
-import DateTimePicker from 'react-datetime-picker/dist/DateTimePicker';
+import { Autocomplete } from '@material-ui/lab';
+import DateTimePicker from 'react-datetime-picker';
 import { makeStyles } from '@material-ui/styles';
-// import customizedButton from '../../common/customizedButton';
-import MuiButton from '@material-ui/core/Button';
+import CustomizedButton from '../../common/CustomizedButton';
 import './Dashboard.css';
+
+const gender = [
+  { title: "Male" },
+  { title: "Female" },
+  { title: "Others" },
+];
 
 const useStyles = makeStyles({
   label: {
@@ -19,48 +25,108 @@ const useStyles = makeStyles({
     color: "white",
     height: 48,
     padding: "0 30px"
-  }
+  },
 });
 
-function Form(props) {
-  const { ref } = props; 
+function Form() {
   const classes = useStyles();
-  const { handleSubmit, setValue } = useForm();
-  const [data, setData] = useState("");
-  const [dateValue, setDateValue] = useState(new Date());
+  const [value, onChange] = useState(new Date());
+  const formData = {
+    formName: "Jane Doe",
+    formGender: "Female",
+    formDate: new Date()
+  };
+  const { control, handleSubmit, setValue } = useForm({
+    defaultValues: formData
+  });
 
   function onSubmit(data) {
-      console.log(data);
+      console.log(data,'Form Data');
   }
 
   return (
     <div className="form-box" style={{border: 'solid 1px #282829'}}>
-      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid 
           container spacing={1} 
           direction="row"
         >
           <Grid item xs={6} className={classes.label}> Name:</Grid>
           <Grid item xs={6} className="labelValue">
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+            <Controller
+              name="formName"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <TextField 
+                  id="textfield"
+                  defaultValue={formData?.formName}
+                  type="text"
+                  placeholder='Enter name'
+                  onChange={(event) => {
+                    setValue("formName",event.target.value);
+                    // setFormData({
+                    //   ...formData,
+                    //   formName: event.target.value,
+                    // });
+                  }}
+                  name="nameField"
+                  // error={errorMessage?.errFormName}
+                  variant="outlined"
+                  inputProps={{maxLength:60,
+                    // "data-testid": "formName"
+                  }}
+                  // style={{width: "100%", maxHeight: "35px"}}
+                  className="spclInput"
+                />
+              )}>
+            </Controller>
           </Grid>
           <Grid item xs={6} className={classes.label}> Gender:</Grid>
           <Grid item xs={6} className="labelValue">
-            <select>
-              <option value="">Select...</option>
-              <option value="A">Option A</option>
-              <option value="B">Option B</option>
-            </select>
+              <Controller
+              name="formGender"
+              control={control}
+              render={({field: {onInputChange, value}}) => (
+                <Autocomplete 
+                  id="gender-autocomplete"
+                  defaultValue={formData?.formGender}
+                  options={gender?.map((eachValue) => eachValue.title)}
+                  autoHighlight
+                  aria-labelledby="genderTag"
+                  onInputChange={(event, options) => {
+                    setValue("formGender",options);
+                    // setFormData({ ...formData, formGender: options });
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      id="textfield"
+                      placeholder="Select gender"
+                      variant="outlined"
+                    />
+                  )}
+                  ListboxProps={{
+                    style: {
+                      fontSize: "12px",
+                      width: "100%",
+                    },
+                  }}
+                />
+              )}>
+            // </Controller>
           </Grid>
           <Grid item xs={6} className={classes.label}> Date of Joining:</Grid>
           <Grid item xs={6} className="labelValue">
-            <DateTimePicker
-              onChange={setDateValue}
-              value={dateValue}
+            <DateTimePicker 
+              name="formDate"
+              value={formData?.formDate}
+              disableClock
+              onChange={onChange}
+              format="dd/MM/yyyy hh:mm:ss a"
             />
           </Grid>
           <Grid item xs={12}>
-            <MuiButton 
+            <CustomizedButton 
               buttontext="Submit" 
               fontWeight="900" 
               bgcolor="#fff" 
@@ -69,9 +135,7 @@ function Form(props) {
               margin = "1px 2px 1px 2px"
               type="submit"
             />
-          </Grid>
-          <Grid item xs={12}>
-          <MuiButton 
+            <CustomizedButton 
               buttontext="Reset" 
               fontWeight="900" 
               bgcolor="#fff"

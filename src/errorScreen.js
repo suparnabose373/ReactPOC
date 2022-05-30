@@ -2,6 +2,6 @@ import * as React from 'react';
 
 export default function ErrorScreen(){
     return(
-        <div>Akshays</div>
+        <div> Sorry couldn't log you in..</div>
     )
 }

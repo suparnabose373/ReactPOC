@@ -4,8 +4,8 @@ import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import config from './config';
 import Main from './components/main';
-import Authentication from './authentication';
-import custCallback from './custCallback';
+import Authentication from './Authentication';
+import CustCallback from './CustCallback';
 import ErrorScreen from './errorScreen';
 import Loader from './common/loader';
 
@@ -29,19 +29,16 @@ const Routes = () => {
     }
 
     return (
-        <div>
-            
+        <div>            
             <div className='grid-container'>
                 <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
                     <Route path='/' exact component={Authentication} />
-                    <Route path='/home' component={custCallback} />
+                    <Route path='/home' component={CustCallback} />
                     <Route path='/login/callback' component={LoginCallback} />
-                    
-                    
-                    
-
+                    {/* <Route path='/dashboard' component={WaitingComponent(dashboard)}/>
+                    <Route path='/errorScreen' component={ErrorScreen} /> */}
                     <SecureRoute path='/dashboard' component={WaitingComponent(dashboard)}/>
-                    <SecureRoute path='/errorScreen' component={ErrorScreen} />                  
+                    <SecureRoute path='/errorScreen' component={ErrorScreen} />
                 </Security>
             </div>
         </div>

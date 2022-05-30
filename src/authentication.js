@@ -51,7 +51,7 @@ async login() {
     }
 
     render(){
-        if (this.state.authenticated === null) { return null }
+        if (this.state.authenticated === null) { return <div>this.state.authenticated is null </div> }
 
         return this.state.authenticated ? (
             <Redirect to={"/dashboard"} />
