@@ -1,3 +1,21 @@
 .formButtons {
     text-align: center;
 }
+
+input#textfield {
+    padding: 6px 6px;
+    width: 93%;
+}
+
+input#gender-autocomplete {
+    padding: 0px;
+    width: 93%;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiAutocomplete-inputRoot.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiOutlinedInput-adornedEnd {
+    padding: 6px;
+}
+
+.MuiOutlinedInput-root {
+    border-radius: 0px;
+}

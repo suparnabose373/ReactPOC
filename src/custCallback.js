@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { OktaAuth } from '@okta/okta-auth-js';
 import config from './config';
 var authClient = new OktaAuth(config.oidc);
-
-class custCallback extends Component {
+console.log('authClient',authClient);
+class CustCallback extends Component {
     constructor(props){
         super(props);
         this.parseUrl = this.parseUrl.bind(this);
@@ -35,4 +35,4 @@ class custCallback extends Component {
     }
 }
 
-export default custCallback;
+export default CustCallback;

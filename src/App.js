@@ -1,10 +1,13 @@
 import React from 'react';
-import Dashboard from '../src/components/Dashboard/index';
+import PortalRouter from './routes';
+import './App.css'
 
-export default function App() {
-  return (
-    <div className="App">
-      <Dashboard/>
-    </div>
-  );
+import { BrowserRouter as Router } from 'react-router-dom';
+
+const App=()=>{
+  return(
+  <Router>
+    <PortalRouter/>
+  </Router>)
 }
+export default App;

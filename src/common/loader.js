@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { CircularProgress } from '@material-ui/core';
 import { withStyles  } from '@material-ui/styles';
 import { Backdrop } from '@material-ui/core';
@@ -50,7 +50,7 @@ const Loader = (props) => {
     );
 };
 
-Loader.PropTypes = {
+Loader.propTypes = {
     classes: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
     fullscreen: PropTypes.bool,
